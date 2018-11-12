@@ -277,7 +277,7 @@ const _hotelsInfo = [
         }
     },
     {
-        "id":11867,
+        "id":8554,
         "type":"regular",
         "name":"aaaVeee Nature's Paradise",
         "slug":"aaaveee-natures-paradise",
@@ -482,23 +482,13 @@ const _hotelsInfo = [
 
 export default {
     getHotels (id, cb) {
-        var idArray = null
-        let hotel = _hotelsInfo.some(function(item, i) {
-            if (_hotelsInfo.id == id) {
-                idArray = i
-            }
+        let idArray = _hotelsInfo.findIndex(function(item, i) {
             return item.id == id
         })
         let hotelsObj = {
-            "meta": {
-                "count": countHotels,
-                "limit": params.limit,       
-                "page": params.page,          
-                "totalPages": totalPages   
-            },
-            "hotels": hotel      
+            "hotels": _hotelsInfo[idArray]      
         }   
         setTimeout(() => { cb(hotelsObj)
-        }, 200)
+        }, 400)
     }
 }

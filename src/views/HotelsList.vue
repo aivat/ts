@@ -19,7 +19,7 @@
       <li v-for="(hotel, index) in hotels" :key="hotel.id">
         {{ index }}
         {{ hotel.id }}
-        {{ hotel.name }}
+         <router-link :to="{ name: 'hotel', params: { id: hotel.id }}">{{ hotel.name }}</router-link>
       </li>
     </ul>
     </div>
@@ -37,6 +37,7 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator';
+//import AppHotel from '../components/hotel.vue'
 
 @Component
 export default class Hotels extends Vue {
@@ -100,6 +101,6 @@ interface IParams {
 </script>
 <style scoped>
 .list {
-  height: 300px;
+  /* height: 300px; */
 }
 </style>

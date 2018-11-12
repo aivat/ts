@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Hotels from './views/Hotels.vue';
+import HotelsList from './views/HotelsList.vue';
 
 Vue.use(Router);
 
@@ -11,7 +11,12 @@ export default new Router({
     {
       path: '/',
       name: 'hotels',
-      component: Hotels,
+      component: HotelsList,
+    },
+    {
+      path: '/hotels/:id',
+      name: 'hotel',
+      component: () => import(/* webpackChunkName: "about" */ './views/Hotel.vue'),
     },
     {
       path: '/about',
