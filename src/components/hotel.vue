@@ -1,37 +1,7 @@
 <template>
   <div class="hello">
-    <h1>Учетки</h1>
-    <select v-on:change="setCountHotels" v-model.number.lazy="params.limit">
-      <option disabled value="">Количество учеток на странице</option>
-      <option>5</option>
-      <option>10</option>
-      <option>15</option>
-      <option>20</option>
-    </select>
-    <span>Выбрано: {{ params.limit }}</span>
-    <div>Число учеток {{ meta.count }} </div>
-    <input v-model="searchHotels" placeholder="Введите название медицинской организации">
-    <div class="loading" v-if="loading">
-      Загрузка...
-    </div>
-    <div class="list">
-    <ul v-if="hotels">
-      <li v-for="(hotel, index) in hotels" :key="hotel.id">
-        {{ index }}
-        {{ hotel.id }}
-        {{ hotel.name }}
-      </li>
-    </ul>
-    </div>
-    <nav>
-      <button v-if="params.page > 0" v-on:click="setPageHotels(params.page - 1)">Назад</button>
-      {{ params.page }} / {{ meta.totalPages }}
-      <button v-if="params.page < meta.totalPages" v-on:click="setPageHotels(params.page + 1)">Вперед</button>
-    </nav>
-    <!-- <button v-on:click="setPageHotelsForward(0)">0</button>
-    <button v-on:click="setPageHotelsBack(1)">1</button>
-    <button v-on:click="setPageHotels(meta.totalPages - 1)">{{ meta.totalPages - 1 }}</button>
-    <button v-on:click="setPageHotels(meta.totalPages)">{{ meta.totalPages }}</button> -->
+    <h1>Учетная запись</h1>
+
   </div>
 </template>
 
@@ -99,7 +69,5 @@ interface IParams {
 }
 </script>
 <style scoped>
-.list {
-  height: 300px;
-}
+
 </style>

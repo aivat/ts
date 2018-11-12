@@ -20,7 +20,7 @@ export default class Hotels extends VuexModule {
         page: 0,
         totalPages: 0
     }
-
+    loading: boolean = false
     @Mutation
     GET_HOTELS(hotels: string[]) {
         console.log(hotels)
@@ -33,12 +33,26 @@ export default class Hotels extends VuexModule {
         this.meta = meta
     }
 
-    @Action
+    @Mutation
+    GET_LOADING(value: boolean) {
+        this.loading = value
+    }
+    
+    @Action({ rawError:true }) 
+    async setLoading() {
+        this.context.commit('GET_HOTELS', null)
+        this.context.commit('GET_LOADING', true)
+    }
+    
+    @Action({ rawError:true })
     async getHotels(params: any) {
         let that = this.context
+        that.commit('GET_HOTELS', null)
+        that.commit('GET_LOADING', true)
         await shopHotels.searchHotels(
             params,
             listHotels => {
+                that.commit('GET_LOADING', false)
                 that.commit('GET_HOTELS', listHotels.hotels)
                 that.commit('GET_META', listHotels.meta)
             }

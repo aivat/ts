@@ -1112,8 +1112,8 @@ export default {
     searchHotels (params, cb) {
         let hotelsFilterByName = null
         let countHotels = _hotels.length
-        //let totalPages = Math.floor(_hotels.length / params.limit)
         let totalPages = Math.ceil(_hotels.length / params.limit) - 1
+
         if ( params.name != null ) {
             hotelsFilterByName = _hotels.filter(function(item) {
                 return item.name.toLowerCase().indexOf(params.name.toLowerCase()) >= 0
@@ -1122,8 +1122,14 @@ export default {
 
         if (!hotelsFilterByName) {
             hotelsFilterByName = _hotels
+        } else {
+            countHotels = hotelsFilterByName.length
+            totalPages = Math.ceil(hotelsFilterByName.length / params.limit) - 1
+            if ( totalPages < 0) {
+                totalPages = 0
+            }
         }
-        
+
         let hotels = []
         let start = params.page*params.limit
         let end = params.page == totalPages ? countHotels : params.page*params.limit + params.limit
@@ -1139,10 +1145,8 @@ export default {
                 "totalPages": totalPages   
             },
             "hotels": hotels      
-        }
-
-        console.log('hotelsObj=', hotelsObj)      
+        }   
         setTimeout(() => { cb(hotelsObj)
-        }, 150)
+        }, 200)
     }
 }
