@@ -34,25 +34,25 @@ export default class Hotels extends VuexModule {
     }
 
     @Mutation
-    GET_LOADING(value: boolean) {
+    GET_LOADING_HOTEL_LIST(value: boolean) {
         this.loading = value
     }
     
     @Action({ rawError:true }) 
     async setLoading() {
         this.context.commit('GET_HOTELS', null)
-        this.context.commit('GET_LOADING', true)
+        this.context.commit('GET_LOADING_HOTEL_LIST', true)
     }
     
     @Action({ rawError:true })
     async getHotels(params: any) {
         let that = this.context
         that.commit('GET_HOTELS', null)
-        that.commit('GET_LOADING', true)
+        that.commit('GET_LOADING_HOTEL_LIST', true)
         await shopHotels.searchHotels(
             params,
             listHotels => {
-                that.commit('GET_LOADING', false)
+                that.commit('GET_LOADING_HOTEL_LIST', false)
                 that.commit('GET_HOTELS', listHotels.hotels)
                 that.commit('GET_META', listHotels.meta)
             }

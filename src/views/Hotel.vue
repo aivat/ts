@@ -4,7 +4,17 @@
     <div class="loading" v-if="loading">
       Загрузка...
     </div>
-  {{hotel}}
+    <!-- <div>{{ hotel }}</div> -->
+    <div v-if="!loading">{{ hotel.hotel.common.main.title }}</div>
+    <div v-if="!loading">{{ hotel.hotel.common.main.description }}</div>
+    <ul v-if="!loading">
+      <li v-for="room in hotel.hotel.rooms">
+        {{ room.name }}
+      </li>
+    </ul>
+    <!-- <div v-if="!loading">
+      <img :src="img.url" v-for="img in hotel.hotel.media.photo.slice(0, 4)">
+    </div> -->
   </div>
 </template>
 
@@ -13,17 +23,9 @@ import { Component, Vue, Watch } from 'vue-property-decorator';
 
 @Component
 export default class Hotels extends Vue {
-  selected: number = 20
-  searchHotels: string = ''
-  time: any = null
-  params: IParams = {
-    limit: 15,
-    name: null,
-    page: 0
-  }
 
   created() {
-    this.$store.dispatch('setLoadingHotel')
+   // this.$store.dispatch('setLoadingHotel')
     this.$store.dispatch('getHotel', this.$route.params.id)
   }
   get loading() {
@@ -35,11 +37,6 @@ export default class Hotels extends Vue {
 
 }
 
-interface IParams {
-    limit: number;
-    name: any;
-    page: number;
-}
 </script>
 <style scoped>
 

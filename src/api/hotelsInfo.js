@@ -490,5 +490,21 @@ export default {
         }   
         setTimeout(() => { cb(hotelsObj)
         }, 400)
+    },
+    getHotelsAsync (id, cancellationToken) {
+        return new Promise(function(resolve, reject) {
+            let idArray = _hotelsInfo.findIndex(function(item, i) {
+                return item.id == id
+            })
+            let hotelsObj = {
+                "hotels": _hotelsInfo[idArray]      
+            }
+            if (cancellationToken) {
+                cancellationToken.register(reject);
+            }
+            setTimeout(() => {
+                resolve( hotelsObj);
+              }, 5000);
+        })
     }
 }
