@@ -32,12 +32,26 @@ export default class Hotel extends VuexModule {
         console.log('hotel=',value)
         this.lastPromise = value
     }
+
     @Action({ rawError:true }) 
     async setLoadingHotel() {
         this.context.commit('GET_HOTEL', null)
         this.context.commit('GET_LOADING', true)
     }
-    
+
+    @Action({ rawError:true })
+    getHotel(id: number) {
+        axios.get('https://hotels-admin.pegast.su/api/v1/hotels/1')
+        .then(response => {
+            console.log(response)
+        })
+        .catch(e => {
+            console.log(e.message)
+            //commit('setLoading', false)
+            //this.error = true
+            //this.loading = false
+        });
+    }
     // @Action({ rawError:true })
     // async getHotel(id: number) {
     //     let that = this.context
@@ -89,54 +103,54 @@ export default class Hotel extends VuexModule {
     //       } );
     // }}
 
-    @Action({ rawError:true })
-    getHotel(id: number) {
-        let ct = new CancellationToken()
-        let that = this.context;
-        const promise = shopHotel.getHotelsAsync(id, ct);
-        this.context.commit( 'SET_LAST_PROMISE', promise );
-        promise.then(
-            result => result
-        ).then( data => {
-            if ( promise == this.lastPromise ) {
-                that.commit('GET_LOADING', false)
-                that.commit('GET_HOTEL', data.hotels)
-                that.commit( 'SET_LAST_PROMISE', null );
-            resolve();
-            }
-        ).catch( error => {
-            if ( promise == this.lastPromise ) {
-                that.commit( 'SET_LAST_PROMISE', null );
-            reject( error );
-            }
-        } );
-        } );
-    }
+    // @Action({ rawError:true })
+    // getHotel(id: number) {
+    //     let ct = new CancellationToken()
+    //     let that = this.context;
+    //     const promise = shopHotel.getHotelsAsync(id, ct);
+    //     this.context.commit( 'SET_LAST_PROMISE', promise );
+    //     promise.then(
+    //         result => result
+    //     ).then( data => {
+    //         if ( promise == this.lastPromise ) {
+    //             that.commit('GET_LOADING', false)
+    //             that.commit('GET_HOTEL', data.hotels)
+    //             that.commit( 'SET_LAST_PROMISE', null );
+    //         resolve();
+    //         }
+    //     ).catch( error => {
+    //         if ( promise == this.lastPromise ) {
+    //             that.commit( 'SET_LAST_PROMISE', null );
+    //         reject( error );
+    //         }
+    //     } );
+    //     } );
+    // }
 }
-function CancellationToken(parentToken){
-    if(!(this instanceof CancellationToken)){
-      return new CancellationToken(parentToken)
-    }
-    this.isCancellationRequested = false;
-    var cancellationPromise = new Promise(resolve => {
-      this.cancel = e => {
-        this.isCancellationReqested = true;
-        if(e){
-          resolve(e);
-        }
-        else
-        {
-          var err = new Error("cancelled");
-          err.cancelled = true;
-          resolve(err);
-        }
-      };
-    });
-    this.register = (callback) => {
-      cancellationPromise.then(callback);
-    }
-    this.createDependentToken = () => new CancellationToken(this);
-    if(parentToken && parentToken instanceof CancellationToken){
-      parentToken.register(this.cancel);
-    }
-  }
+// function CancellationToken(parentToken){
+//     if(!(this instanceof CancellationToken)){
+//       return new CancellationToken(parentToken)
+//     }
+//     this.isCancellationRequested = false;
+//     var cancellationPromise = new Promise(resolve => {
+//       this.cancel = e => {
+//         this.isCancellationReqested = true;
+//         if(e){
+//           resolve(e);
+//         }
+//         else
+//         {
+//           var err = new Error("cancelled");
+//           err.cancelled = true;
+//           resolve(err);
+//         }
+//       };
+//     });
+//     this.register = (callback) => {
+//       cancellationPromise.then(callback);
+//     }
+//     this.createDependentToken = () => new CancellationToken(this);
+//     if(parentToken && parentToken instanceof CancellationToken){
+//       parentToken.register(this.cancel);
+//     }
+//   }

@@ -86,7 +86,7 @@ export default class Hotels extends Vue {
     this.params.page = 0
     this.$store.dispatch('getHotels', this.params)
   }
-  setPageHotels(page) {
+  setPageHotels(page: any) {
     this.params.page = page
     this.$store.dispatch('getHotels', this.params)
   }

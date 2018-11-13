@@ -51,7 +51,7 @@ export default class Hotels extends VuexModule {
         that.commit('GET_LOADING_HOTEL_LIST', true)
         await shopHotels.searchHotels(
             params,
-            listHotels => {
+            (listHotels: any) => {
                 that.commit('GET_LOADING_HOTEL_LIST', false)
                 that.commit('GET_HOTELS', listHotels.hotels)
                 that.commit('GET_META', listHotels.meta)
