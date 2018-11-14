@@ -1148,5 +1148,13 @@ export default {
         }   
         setTimeout(() => { cb(hotelsObj)
         }, 200)
+    },
+    echoHotels (cb) {
+        let response = []
+        _hotels.forEach((item, i) => {
+            response.push({id: item.id, name: item.name, stars: item.stars})
+        })
+        setTimeout(() => { cb(response)
+        }, 200)
     }
 }

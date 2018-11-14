@@ -14,6 +14,7 @@ interface IHotelsMeta {
 @Module
 export default class Hotels extends VuexModule {
     hotels: any[] = []
+    hotelsJson: any[] = []
     meta: IHotelsMeta = {
         count: 0,
         limit: 0,
@@ -26,7 +27,11 @@ export default class Hotels extends VuexModule {
         console.log(hotels)
         this.hotels = hotels
     }
-
+    @Mutation
+    GET_HOTELS_JSON(hotels: string[]) {
+        console.log(hotels)
+        this.hotelsJson = hotels
+    }
     @Mutation
     GET_META(meta: IHotelsMeta) {
         console.log(meta)
@@ -55,6 +60,19 @@ export default class Hotels extends VuexModule {
                 that.commit('GET_LOADING_HOTEL_LIST', false)
                 that.commit('GET_HOTELS', listHotels.hotels)
                 that.commit('GET_META', listHotels.meta)
+            }
+        )
+    }
+    @Action({ rawError:true })
+    async echoHotels() {
+        let that = this.context
+        that.commit('GET_HOTELS', null)
+        that.commit('GET_LOADING_HOTEL_LIST', true)
+        await shopHotels.echoHotels(
+            (listHotels: any) => {
+                that.commit('GET_LOADING_HOTEL_LIST', false)
+                that.commit('GET_HOTELS_JSON', listHotels)
+                
             }
         )
     }

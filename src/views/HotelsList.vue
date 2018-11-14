@@ -28,6 +28,7 @@
       {{ params.page }} / {{ meta.totalPages }}
       <button v-if="params.page < meta.totalPages" v-on:click="setPageHotels(params.page + 1)">Вперед</button>
     </nav>
+    <div>{{hotelsjson}}</div>
     <!-- <button v-on:click="setPageHotelsForward(0)">0</button>
     <button v-on:click="setPageHotelsBack(1)">1</button>
     <button v-on:click="setPageHotels(meta.totalPages - 1)">{{ meta.totalPages - 1 }}</button>
@@ -57,10 +58,14 @@ export default class Hotels extends Vue {
       this.searchHotels = this.$route.query.search
     } 
     this.$store.dispatch('getHotels', this.params)
+     this.$store.dispatch('echoHotels')
   }
 
   get hotels() {
     return this.$store.state.hotels.hotels
+  }
+  get hotelsjson() {
+    return this.$store.state.hotels.hotelsJson
   }
   get meta() {
     return this.$store.state.hotels.meta

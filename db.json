@@ -2,34 +2,278 @@
     "hotels": [
         {
         "id":8286,
-        "name":"1000 \u0437\u0432\u0435\u0437\u0434 \u043f\u0430\u043d\u0441\u0438\u043e\u043d\u0430\u0442",
-        "type":"regular",
-        "pegasysId":86281942,
-        "slug":"1000-zvezd-pansionat",
-        "stars":3,
-        "location":1827,
-        "optionEconomic":true
+        "name":"1000 звезд пансионат",
+        "stars":3
         },
         {
         "id":8554,
-        "name":"1001 \u043d\u043e\u0447\u044c \u043e\u0442\u0435\u043b\u044c",
-        "type":"regular",
-        "pegasysId":98665127,
-        "slug":"1001-noch-otel",
-        "stars":3,
-        "location":1825,
-        "optionFamily":true,
-        "optionRecomended":true,
-        "optionSpa":true
+        "name":"1001 ночь отель",
+        "stars":3
         },
         {
         "id":7514,
         "name":"115 The Strand Aparthotel",
-        "type":"fit",
-        "pegasysId":17534836,
-        "slug":"115-the-strand-aparthotel",
-        "stars":3,
-        "location":882
+        "stars":3
+        },
+        {
+        "id":7572,
+        "name":"121 Paris Hotel",
+        "stars":3
+        },
+        {
+        "id":11389,
+        "name":"14th Floor Hotel",
+        "stars":4
+        },
+        {
+        "id":7500,
+        "name":"1K Paris (ex.Streets Hotel)",
+        "stars":4
+        },
+        {
+        "id":661,
+        "name":"20 Degres Sud Boutique Hotel",
+        "stars":4
+        },
+        {
+        "id":12357,
+        "name":"21Palms Bed&Breakfast",
+        "stars":3
+        },
+        {
+        "id":12286,
+        "name":"28 Отель",
+        "stars":2
+        },
+        {
+        "id":9459,
+        "name":"4R Miramar",
+        "stars":3
+        },
+        {
+        "id":5368,
+        "name":"4R Playa Park",
+        "stars":3
+        },
+        {
+        "id":6449,
+        "name":"4R Regina Gran Hotel",
+        "stars":4
+        },
+        {
+        "id":6293,
+        "name":"4R Salou Park Resort I",
+        "stars":4
+        },
+        {
+        "id":5367,
+        "name":"4R Salou Park Resort II",
+        "stars":3
+        },
+        {
+        "id":390,
+        "name":"7 Colinas Hotel",
+        "stars":4
+        },
+        {
+        "id":8584,
+        "name":"7 небо отель",
+        "stars":3
+        },
+        {
+        "id":11727,
+        "name":"72 Hotel Sharjah",
+        "stars":5
+        },
+        {
+        "id":12208,
+        "name":"7Q Bangla Hotel",
+        "stars":3
+        },
+        {
+        "id":12207,
+        "name":"7Q Patong Beach Hotel",
+        "stars":3
+        },
+        {
+        "id":7600,
+        "name":"88 Hotel Patong",
+        "stars":3
+        },
+        {
+        "id":391,
+        "name":"A Casa das Portas Velhas",
+        "stars":4
+        },
+        {
+        "id":9953,
+        "name":"A-One New Wing Hotel",
+        "stars":4
+        },
+        {
+        "id":7263,
+        "name":"A-One Star Hotel",
+        "stars":3
+        },
+        {
+        "id":3898,
+        "name":"A-One The Royal Cruise Hotel",
+        "stars":4
+        },
+        {
+        "id":7457,
+        "name":"A1 Hotel",
+        "stars":3
+        },
+        {
+        "id":3319,
+        "name":"AA Grand Oasis Resort",
+        "stars":4
+        },
+        {
+        "id":11867,
+        "name":"aaaVeee Nature's Paradise",
+        "stars":4
+        },
+        {
+        "id":8169,
+        "name":"Aalborg First Hotels",
+        "stars":3
+        },
+        {
+        "id":4203,
+        "name":"Aana Resort & Spa",
+        "stars":3
+        },
+        {
+        "id":662,
+        "name":"Aanari Hotel & Spa",
+        "stars":3
+        },
+        {
+        "id":12420,
+        "name":"Aarya Boulevard",
+        "stars":3
+        },
+        {
+        "id":4596,
+        "name":"Abalone Resort",
+        "stars":2
+        },
+        {
+        "id":11553,
+        "name":"Abaton Island Resort & Spa",
+        "stars":5
+        },
+        {
+        "id":11808,
+        "name":"Abba Balmoral",
+        "stars":4
+        },
+        {
+        "id":10512,
+        "name":"Abba Garden",
+        "stars":4
+        },
+        {
+        "id":11809,
+        "name":"Abba Rambla",
+        "stars":3
+        },
+        {
+        "id":11014,
+        "name":"Abba Sants",
+        "stars":4
+        },
+        {
+        "id":5906,
+        "name":"Abba Xalet Suites Hotel",
+        "stars":4
+        },
+        {
+        "id":7762,
+        "name":"Abbeyglen Castle Hotel",
+        "stars":4
+        },
+        {
+        "id":10291,
+        "name":"ABC Hotel Airport",
+        "stars":3
+        },
+        {
+        "id":1650,
+        "name":"Abjar Grand Hotel",
+        "stars":4
+        },
+        {
+        "id":4597,
+        "name":"Acacia Palms Resort",
+        "stars":4
+        },
+        {
+        "id":7541,
+        "name":"Acajou Hotel",
+        "stars":4
+        },
+        {
+        "id":11782,
+        "name":"Acapulco Hotel",
+        "stars":4
+        },
+        {
+        "id":7996,
+        "name":"Acar Hotel",
+        "stars":4
+        },
+        {
+        "id":8416,
+        "name":"Acores Lisboa",
+        "stars":4
+        },
+        {
+        "id":9399,
+        "name":"Acqua Hotel",
+        "stars":4
+        },
+        {
+        "id":3632,
+        "name":"Acropol Beach",
+        "stars":3
+        },
+        {
+        "id":5391,
+        "name":"Acta Atrium Palace",
+        "stars":4
+        },
+        {
+        "id":1453,
+        "name":"Acta Mimic",
+        "stars":3
+        },
+        {
+        "id":6562,
+        "name":"Adaaran Club Rannalhi",
+        "stars":4
+        },
+        {
+        "id":6549,
+        "name":"Adaaran Prestige Vadoo",
+        "stars":5
+        },
+        {
+        "id":6563,
+        "name":"Adaaran Prestige Water Villas",
+        "stars":5
+        },
+        {
+        "id":6554,
+        "name":"Adaaran Select Hudhuranfushi",
+        "stars":4
+        },
+        {
+        "id":6312,
+        "name":"Adaaran Select Meedhupparu",
+        "stars":4
         }
     ],
     "hotel": [
