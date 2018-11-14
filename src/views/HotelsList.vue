@@ -19,6 +19,7 @@
       <li v-for="(hotel, index) in hotels" :key="hotel.id">
         {{ index }}
         {{ hotel.id }}
+        {{ hotel.stars }}
          <router-link :to="{ name: 'hotel', params: { id: hotel.id }}">{{ hotel.name }}</router-link>
       </li>
     </ul>
@@ -28,17 +29,17 @@
       {{ params.page }} / {{ meta.totalPages }}
       <button v-if="params.page < meta.totalPages" v-on:click="setPageHotels(params.page + 1)">Вперед</button>
     </nav>
-    <div>{{hotelsjson}}</div>
-    <!-- <button v-on:click="setPageHotelsForward(0)">0</button>
-    <button v-on:click="setPageHotelsBack(1)">1</button>
-    <button v-on:click="setPageHotels(meta.totalPages - 1)">{{ meta.totalPages - 1 }}</button>
-    <button v-on:click="setPageHotels(meta.totalPages)">{{ meta.totalPages }}</button> -->
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from 'vue-property-decorator';
-//import AppHotel from '../components/hotel.vue'
+import { Component, Vue, Watch } from 'vue-property-decorator'
+
+interface IParams {
+    limit: number;
+    name: any;
+    page: number;
+}
 
 @Component
 export default class Hotels extends Vue {
@@ -52,20 +53,15 @@ export default class Hotels extends Vue {
   }
 
   created() {
-    
     if (this.$route.query.search) {
       this.params.name = this.$route.query.search
       this.searchHotels = this.$route.query.search
     } 
     this.$store.dispatch('getHotels', this.params)
-     this.$store.dispatch('echoHotels')
   }
 
   get hotels() {
     return this.$store.state.hotels.hotels
-  }
-  get hotelsjson() {
-    return this.$store.state.hotels.hotelsJson
   }
   get meta() {
     return this.$store.state.hotels.meta
@@ -73,6 +69,7 @@ export default class Hotels extends Vue {
   get loading() {
     return this.$store.state.hotels.loading
   }
+
   @Watch('searchHotels')
   search(val: string, oldVal: string) {
     if (this.time) {
@@ -86,7 +83,6 @@ export default class Hotels extends Vue {
       this.$store.dispatch('getHotels', this.params)
       }, 500);
   }
-
   setCountHotels() {
     this.params.page = 0
     this.$store.dispatch('getHotels', this.params)
@@ -95,17 +91,8 @@ export default class Hotels extends Vue {
     this.params.page = page
     this.$store.dispatch('getHotels', this.params)
   }
-
-}
-
-interface IParams {
-    limit: number;
-    name: any;
-    page: number;
 }
 </script>
 <style scoped>
-.list {
-  /* height: 300px; */
-}
+
 </style>

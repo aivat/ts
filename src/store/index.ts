@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import hotels from './modules/hotels';
+import hotelsList from '@/store/modules/hotelsList';
 import hotel from './modules/hotel';
-import { IHotelsState } from './modules/hotels';
+import { IHotelsState } from '@/store/modules/hotelsList';
 import { IHotelState } from './modules/hotel';
 //import { IUserState } from './modules/user';
 
@@ -17,7 +17,7 @@ export interface IRootState {
 
 export default new Vuex.Store<IRootState>({
   modules: { 
-    hotels: hotels,
+    hotels: hotelsList,
     hotel: hotel
   }
 });

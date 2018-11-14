@@ -15,6 +15,15 @@
     "interface-name": false,
     "ordered-imports": false,
     "object-literal-sort-keys": false,
-    "no-consecutive-blank-lines": false
+    "no-consecutive-blank-lines": false,
+    "trailing-comma": [true, {
+      "singleline": "never",
+      "multiline": {
+        "objects": "never",
+        "arrays": "always",
+        "functions": "never",
+        "typeLiterals": "ignore"
+      }
+    }]
   }
 }
