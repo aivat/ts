@@ -37,7 +37,7 @@ import { Component, Vue, Watch } from 'vue-property-decorator'
 
 interface IParams {
     limit: number;
-    name: any;
+    name: string;
     page: number;
 }
 
@@ -48,7 +48,7 @@ export default class Hotels extends Vue {
   time: any = null
   params: IParams = {
     limit: 15,
-    name: null,
+    name: '',
     page: 0
   }
 

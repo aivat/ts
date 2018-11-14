@@ -1,17 +1,31 @@
 import {VuexModule, Module, Mutation, Action} from 'vuex-module-decorators'
 import hotelsList from '@/api/hotelsList'
 
-export interface IHotelsState {
-    hotels: string[];
+// export interface IHotelsStateList {
+//     //hotels: string[];
+//     hotels: Array<{ 
+//         id: number;
+//         name: string;
+//         stars: number}>;
+// }
+export interface IHotelsStateList {
+    [index: number]: {
+        id: number;
+        name: string;
+        stars: number;
+    }
 }
-
 interface IHotelsMeta {
     count: number;
     limit: number;
     page: number;
     totalPages: number;
 }
-
+interface IHotelsList {
+    id: number;
+    name: string;
+    pstars: number;
+}
 @Module
 export default class Hotels extends VuexModule {
     hotels: any[] = []
@@ -30,7 +44,7 @@ export default class Hotels extends VuexModule {
     }
 
     @Mutation
-    SET_HOTELS_LIST(hotels: string[]) {
+    SET_HOTELS_LIST(hotels: IHotelsList[]) {
         this.hotels = hotels
     }
 

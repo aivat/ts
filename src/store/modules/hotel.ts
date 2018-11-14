@@ -2,7 +2,7 @@ import {VuexModule, Module, Mutation, Action} from 'vuex-module-decorators'
 import axios from 'axios'
 
 export interface IHotelState {
-    hotel: string[];
+    hotel: object;
 }
 
 const CancelToken = axios.CancelToken
@@ -12,6 +12,7 @@ export default class Hotel extends VuexModule {
     hotel: any[] = []
     loading: boolean = false
     cancel: any = null
+    error: any = null
 
     @Mutation
     SET_LOADING(value: boolean) {
@@ -21,6 +22,17 @@ export default class Hotel extends VuexModule {
     @Mutation
     SET_HOTEL(hotel: string[]) {
         this.hotel = hotel
+    }
+
+    @Mutation
+    SET_ERROR(value: boolean) {
+        this.error = value
+    }
+
+    @Action({ rawError:true }) 
+    async setLoadingHotel() {
+        this.context.commit('SET_HOTEL', null)
+        this.context.commit('SET_ERROR', false)
     }
 
     @Action({ rawError:true })
@@ -41,7 +53,7 @@ export default class Hotel extends VuexModule {
             that.commit('SET_LOADING', false)
         })
         .catch(e => {
-            
+            that.commit('SET_ERROR', `Что-то пошло не так... ${e.toString()}`)
             that.commit('SET_LOADING', false)
         })
     }
