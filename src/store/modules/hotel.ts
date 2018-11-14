@@ -38,20 +38,49 @@ export default class Hotel extends VuexModule {
         this.context.commit('GET_HOTEL', null)
         this.context.commit('GET_LOADING', true)
     }
-
     @Action({ rawError:true })
     getHotel(id: number) {
-        axios.get('https://hotels-admin.pegast.su/api/v1/hotels/1')
-        .then(response => {
-            console.log(response)
+        this.context.commit('GET_LOADING', true)
+        let that = this.context
+        console.log('qwedddddddddddd')
+        const promise = shopHotel.getHotelsAsync(id)
+        this.context.commit( 'SET_LAST_PROMISE', promise );
+        promise
+        .then(
+            hotel => {
+                console.log('5555555555',hotel.hotels)
+                if ( promise == this.lastPromise ) {
+                    that.commit('GET_HOTEL', hotel.hotels)
+                    that.commit( 'SET_LAST_PROMISE', null )
+                    that.commit('GET_LOADING', false)
+                }
+            }
+        )
+        .catch(error => {
+            if ( promise == this.lastPromise ) {
+                that.commit( 'setLastPromise', null )
+            }
         })
-        .catch(e => {
-            console.log(e.message)
-            //commit('setLoading', false)
-            //this.error = true
-            //this.loading = false
-        });
     }
+    // @Action({ rawError:true })
+    // getHotel(id: number) {
+    //     this.context.commit('GET_LOADING', true)
+    //     let that = this.context
+    //     axios.get('https://hotels-admin.pegast.su/api/v1/hotels/1')
+    //     .then(response => {
+            
+    //         that.commit('GET_HOTEL', response)
+    //         that.commit('GET_LOADING', false)
+    //         console.log('load', this.loading)
+    //         console.log(response)
+    //     })
+    //     .catch(e => {
+    //         console.log(e.message)
+    //         //commit('setLoading', false)
+    //         //this.error = true
+    //         //this.loading = false
+    //     });
+    // }
     // @Action({ rawError:true })
     // async getHotel(id: number) {
     //     let that = this.context

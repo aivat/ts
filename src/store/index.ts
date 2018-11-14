@@ -15,23 +15,9 @@ export interface IRootState {
   //user: IUserState;
 }
 
-// Declare empty store first, dynamically register all modules later.
 export default new Vuex.Store<IRootState>({
   modules: { 
     hotels: hotels,
     hotel: hotel
   }
 });
-
-// const store = new Vuex.Store({
-//   state: {},
-//   modules: {
-//     hotels
-//   }
-// })
-// export default new Vuex.Store({
-//   modules: {
-//     hotels
-//   },
-// })
-//export default store
