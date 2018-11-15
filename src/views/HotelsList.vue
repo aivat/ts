@@ -30,8 +30,8 @@
     <div class="container">
       <div class="hotels-wrap">
         <div class="hotels-title">
-          <h1 class="hotels-title-h1">Учетки</h1>
-          <div class="hotels-title-desc">{{ meta.count }} учеток</div>
+          <h1 class="hotels-title-h1">Отели</h1>
+          <div class="hotels-title-desc">{{ meta.count }} отелей</div>
         </div>
         <div class="select-wrap">
           <label>Количество записей на странице</label>
@@ -43,7 +43,7 @@
             <option class="select-option">20</option>
           </select>
         </div>
-        <input class="search" v-model="searchHotels" placeholder="Введите название медицинской">
+        <input class="search" v-model="searchHotels" placeholder="Введите название отеля">
         <div class="loading" v-if="loading">
           <div>Загрузка...</div>
         </div>
@@ -51,7 +51,7 @@
           <ul v-if="hotels">
             <li class="hotels-item" v-for="hotel in hotels" :key="hotel.id">
               <router-link :to="{ name: 'hotel', params: { id: hotel.id }}">{{ hotel.name }}</router-link>
-              <div>{{ hotel.stars }}</div>
+              <AppStars :stars="hotel.stars"/>
             </li>
           </ul>
         </div>
@@ -62,6 +62,7 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from 'vue-property-decorator'
+import AppStars from '../components/AppStars.vue'
 
 interface IParams {
     limit: number;
@@ -69,7 +70,11 @@ interface IParams {
     page: number;
 }
 
-@Component
+@Component( {
+  components: {
+    AppStars
+  }
+})
 export default class Hotels extends Vue {
   selected: number = 20
   searchHotels: string = ''
@@ -127,7 +132,6 @@ export default class Hotels extends Vue {
   flex-direction: column;
   background-color: rgb(242, 245, 248);
   margin-top: 40px;
-  
 }
 .container {
   width: 100%; 
@@ -136,6 +140,7 @@ export default class Hotels extends Vue {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 0 5px;
 }
 .hotels-nav {
   display: flex;
@@ -182,7 +187,7 @@ export default class Hotels extends Vue {
   align-items: baseline;
 }
 .hotels-title-h1 {
-  font-size: 24px;
+  font-size: 32px;
   margin: 0;
 }
 .hotels-title-desc {
@@ -190,7 +195,7 @@ export default class Hotels extends Vue {
 
 }
 .select-wrap {
-  margin: 10px 0;
+  margin-bottom: 15px;
 }
 .select {
   border-radius: 2px;
@@ -235,16 +240,16 @@ export default class Hotels extends Vue {
     align-items: center
   }
   .container {
-    width: 1200px; 
+    width: 800px; 
+  }
+  .hotels-wrap {
+    padding: 0;
   }
   .select {
     margin-left: 7px;
   }
-  .loading {
+  .loading{
     height: 680px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 }
 </style>
